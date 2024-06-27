@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-*b3gd@lfuf^dnr+vn#br8j(l0^yuh@aj70r@nd9ztgg=2&k+1i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'mysite.com',
+    '127.0.0.1',
+    'localhost'
+]
 
 LOGIN_REDIRECT_URL = 'dashboard' 
 LOGIN_URL = 'login' 
@@ -35,7 +39,16 @@ LOGOUT_URL = 'logout'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 MEDIA_URL = 'media/' 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY') 
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET')
 # Application definition
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend', 
+    'social_core.backends.google.GoogleOAuth2',
+]
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
@@ -46,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
