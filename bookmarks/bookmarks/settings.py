@@ -55,6 +55,9 @@ SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details', 
 ]
+
+THUMBNAIL_DEBUG = True
+
 # Application definition
 
 AUTHENTICATION_BACKENDS = [
@@ -75,6 +78,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'images.apps.ImagesConfig',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
